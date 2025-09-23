@@ -1,0 +1,11 @@
+# Node / TypeScript
+node_modules/
+dist/
+build/
+.vscode/
+.env
+.env.local
+*.log
+
+# TypeScript cache
+*.tsbuildinfo
