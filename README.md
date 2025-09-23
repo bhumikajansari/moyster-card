@@ -35,6 +35,9 @@ moyster-card/
 ## Setup 
 Clone git repo and install dependencies
 ```bash
+git clone https://github.com/bhumikajansari/moyster-card.git
+```
+```bash
 npm install
 ```
 	
