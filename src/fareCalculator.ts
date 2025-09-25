@@ -19,7 +19,6 @@ export function JourneyFare(journey: Journey): number { // calculate fare for a 
     return peak ? ZoneFares.peak[zone] : ZoneFares.offpeak[zone];
 }
 
-//export function FareCalculator(journeys : Journey[]) : JourneyRecord[] { // class to manage fare calculation and caps
 export function FareCalculator(journeys : Journey[]) : number { // class to manage fare calculation and caps
     if (journeys.length === 0) return 0;
 
@@ -48,7 +47,6 @@ export function FareCalculator(journeys : Journey[]) : number { // class to mana
     const weekStart = getWeekStart(minDate).toISOString();
     const weekEnd = getWeekEnd(minDate).toISOString();
 
-    //for (const journey of journeys) {
     for (const journey of journeys.filter(j => j.datetime.toISOString() >= weekStart && j.datetime.toISOString() <= weekEnd).sort((a, b) => a.datetime.getTime() - b.datetime.getTime())) {
         const fare = JourneyFare(journey);
         const day = dayKey(journey.datetime);
@@ -83,10 +81,6 @@ export function FareCalculator(journeys : Journey[]) : number { // class to mana
         dailyTotals[day] = (dailyTotals[day] || 0) + fareToCharge;
         weeklyTotals[weekStart] = (weeklyTotals[weekStart] || 0) + fareToCharge;
     }
-
-    // console.log('Journey Records:', journeyRecords);
-    // console.log('Daily Totals:', dailyTotals);
-    // console.log('Weekly Totals:', weeklyTotals);
 
     return journeyRecords.reduce((sum, record) => sum + record.fareCharged, 0);
 }
